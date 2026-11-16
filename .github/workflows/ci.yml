@@ -16,7 +16,7 @@ jobs:
       contents: read
     with:
       hosted-runner: ubuntu-26.04
-      python-version: '3.11'
+      python-version: '3.11.17'
       uv-version: '0.13.5'
       setup: true
       fetch-depth: 0
