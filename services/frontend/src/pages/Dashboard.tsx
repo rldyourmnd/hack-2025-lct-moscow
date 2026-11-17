@@ -126,7 +126,7 @@ export const Dashboard: React.FC = () => {
       case 'analyzing':
         return <PlayIcon fontSize="small" />
       default:
-        return null
+        return undefined
     }
   }
 

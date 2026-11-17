@@ -16,7 +16,6 @@ export const FileUpload: React.FC = () => {
   const navigate = useNavigate()
   const { uploadFile, isLoading, error, clearError } = useJobStore()
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [uploadProgress, setUploadProgress] = useState(0)
 
   const onDrop = (acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {

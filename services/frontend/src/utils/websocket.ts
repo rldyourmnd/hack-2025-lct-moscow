@@ -20,9 +20,9 @@ class WebSocketService {
     return 'client_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now()
   }
 
-  connect(): Promise<void> | null {
+  connect(): Promise<void> {
     if (this.socket?.connected) {
-      return null
+      return Promise.resolve()
     }
 
     if (this.connectionPromise) {
@@ -97,6 +97,7 @@ class WebSocketService {
         reject(error)
       }
     })
+    return this.connectionPromise
   }
 
   private attemptReconnect(): void {
@@ -147,17 +148,14 @@ class WebSocketService {
       console.log('[WS] Subscribed to job:', jobId)
     } else {
       console.log('[WS] Queued subscription for job:', jobId)
-      const connectPromise = this.connect()
-      if (connectPromise) {
-        connectPromise.then(() => {
-          if (this.socket?.connected && this.pendingSubscriptions.has(jobId)) {
-            this.socket.emit('subscribe_job', { job_id: jobId })
-            console.log('[WS] Deferred subscription sent for job:', jobId)
-          }
-        }).catch(err => {
-          console.error('[WS] Failed to connect for subscription:', err)
-        })
-      }
+      this.connect().then(() => {
+        if (this.socket?.connected && this.pendingSubscriptions.has(jobId)) {
+          this.socket.emit('subscribe_job', { job_id: jobId })
+          console.log('[WS] Deferred subscription sent for job:', jobId)
+        }
+      }).catch(err => {
+        console.error('[WS] Failed to connect for subscription:', err)
+      })
     }
   }
 

@@ -7,13 +7,19 @@ LCT Moscow 2025 hackathon prototype: distributed data ingestion, generated DDL/E
 
 This repository is a hackathon prototype or supporting tool. Follow the project-specific setup below; cloud integrations require your own configuration and credentials.
 
-## Backend checks
+## Component checks
 
-`just check` parses the tracked authored Python sources and checks Just formatting.
-CI prepares the declared Python/uv environment, then `just setup` installs the
-backend requirements. `just test` runs the existing unit suite and byte compilation;
-`just verify` combines the source and backend checks. These commands cover the backend;
-frontend, database and cloud integration qualification are separate.
+Run `just setup-frontend` to install the existing frontend lock with package
+lifecycle scripts disabled. `just check` parses authored Python and type-checks
+the frontend and Vite configuration without executing application code or emitting build files.
+On an execution host, `just setup-backend` prepares the existing Python environment,
+`just test` retains the backend unit suite and byte compilation, and `just build`
+produces the real frontend bundle. `just verify` combines these checks.
+
+CI runs backend and frontend roles separately and requires both outcomes plus
+shared merge stops. The existing library, backend runtime, application dependencies
+and frontend package lock remain unchanged. Browser behavior, database/cloud
+integrations and deployed containers require separate qualification.
 
 ---
 

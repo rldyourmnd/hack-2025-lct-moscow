@@ -10,13 +10,47 @@ on:
 permissions: {}
 
 jobs:
-  check:
-    uses: NDDev-Technocracy-OpenNetwork/nddev-ci/.github/workflows/check.yml@9fead1382c452a6b791a0a9e464ac6ac66537ac3 # v0.6.51
+  backend:
+    uses: NDDev-Technocracy-OpenNetwork/nddev-ci/.github/workflows/recipe.yml@9fead1382c452a6b791a0a9e464ac6ac66537ac3 # v0.6.51
     permissions:
       contents: read
     with:
       hosted-runner: ubuntu-26.04
       python-version: '3.11.17'
       uv-version: '0.13.5'
-      setup: true
+      prepare: setup-backend
+      recipe: verify-backend
       fetch-depth: 0
+
+  frontend:
+    uses: NDDev-Technocracy-OpenNetwork/nddev-ci/.github/workflows/recipe.yml@9fead1382c452a6b791a0a9e464ac6ac66537ac3 # v0.6.51
+    permissions:
+      contents: read
+    with:
+      hosted-runner: ubuntu-26.04
+      node-version: '26.13.1'
+      prepare: setup-frontend
+      recipe: verify-frontend
+      artifact: services/frontend/dist
+      artifact-name: frontend
+      fetch-depth: 0
+
+  merge-stops:
+    if: github.event_name == 'pull_request'
+    uses: NDDev-Technocracy-OpenNetwork/nddev-ci/.github/workflows/merge-stops.yml@9fead1382c452a6b791a0a9e464ac6ac66537ac3 # v0.6.51
+    permissions:
+      contents: read
+
+  gate:
+    needs: [backend, frontend, merge-stops]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-26.04
+    permissions: {}
+    timeout-minutes: 5
+    steps:
+      - name: Require both components and shared merge checks
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+          EXPECTED: >-
+            {"backend":"success","frontend":"success","merge-stops":"${{ github.event_name == 'pull_request' && 'success' || 'skipped' }}"}
+        run: jq -e --argjson want "$EXPECTED" 'map_values(.result) == $want' <<< "$NEEDS"
