@@ -20,9 +20,9 @@ class WebSocketService {
     return 'client_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now()
   }
 
-  connect(): Promise<void> | null {
+  connect(): Promise<void> {
     if (this.socket?.connected) {
-      return null
+      return Promise.resolve()
     }
 
     if (this.connectionPromise) {
@@ -97,6 +97,7 @@ class WebSocketService {
         reject(error)
       }
     })
+    return this.connectionPromise
   }
 
   private attemptReconnect(): void {

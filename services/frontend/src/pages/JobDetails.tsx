@@ -11,7 +11,6 @@ import {
   LinearProgress,
   Alert,
   Paper,
-  Divider,
 } from '@mui/material'
 import {
   ArrowBack as ArrowBackIcon,
@@ -252,7 +251,7 @@ export const JobDetails: React.FC = () => {
                 )}
 
                 {status.error_message && (
-                  <Alert severity="error" size="small">
+                  <Alert severity="error">
                     {status.error_message}
                   </Alert>
                 )}

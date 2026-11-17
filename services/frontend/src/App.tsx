@@ -1,4 +1,3 @@
-import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Container, AppBar, Toolbar, Typography, Box, Button } from '@mui/material'
 import { Dashboard } from './pages/Dashboard'
@@ -8,7 +7,6 @@ import { ProcessFlow } from './pages/ProcessFlow'
 import { DatabaseSchema } from './pages/DatabaseSchema'
 import { PipelineVisualization } from './pages/PipelineVisualization'
 import StorageIcon from '@mui/icons-material/Storage'
-import AccountTreeIcon from '@mui/icons-material/AccountTree'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 
 function App() {
