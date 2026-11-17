@@ -7,6 +7,14 @@ LCT Moscow 2025 hackathon prototype: distributed data ingestion, generated DDL/E
 
 This repository is a hackathon prototype or supporting tool. Follow the project-specific setup below; cloud integrations require your own configuration and credentials.
 
+## Backend checks
+
+`just check` parses the tracked authored Python sources and checks Just formatting.
+CI prepares the declared Python/uv environment, then `just setup` installs the
+backend requirements. `just test` runs the existing unit suite and byte compilation;
+`just verify` combines the source and backend checks. These commands cover the backend;
+frontend, database and cloud integration qualification are separate.
+
 ---
 
 ## Система распределенной обработки больших данных
