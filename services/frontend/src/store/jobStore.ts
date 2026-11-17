@@ -301,9 +301,6 @@ export const useJobStore = create<JobStore>((set, get) => ({
 }))
 
 // Initialize WebSocket connection immediately when store is created
-const connectPromise = websocketService.connect()
-if (connectPromise) {
-  connectPromise.catch(error => {
-    console.error('Failed to initialize WebSocket connection:', error)
-  })
-}
+websocketService.connect().catch(error => {
+  console.error('Failed to initialize WebSocket connection:', error)
+})
