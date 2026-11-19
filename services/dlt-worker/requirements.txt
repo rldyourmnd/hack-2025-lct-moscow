@@ -1,4 +1,4 @@
-dlt==0.4.2
+dlt==1.32.0
 pandas==2.1.4
 numpy==1.26.2
 pyarrow==14.0.2
