@@ -18,7 +18,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^20.0.0",
-    "react-router-dom": "^6.20.1",
+    "react-router-dom": "^7.0.0",
     "reactflow": "^11.10.1",
     "recharts": "^3.0.0",
     "socket.io-client": "^4.7.4",
