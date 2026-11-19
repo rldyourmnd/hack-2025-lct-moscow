@@ -8,7 +8,7 @@ clickhouse-driver==0.2.6
 lxml==6.1.0
 xmltodict==0.13.0
 redis==8.1.0
-requests==2.31.0
+requests==2.33.0
 python-dotenv==1.2.2
 pydantic==2.5.0
 python-json-logger==4.2.0
