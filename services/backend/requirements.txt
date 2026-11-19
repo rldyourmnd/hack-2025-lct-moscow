@@ -1,6 +1,6 @@
 fastapi==0.109.1
 uvicorn==0.24.0
-gunicorn==22.0.0
+gunicorn==27.0.1
 websockets==17.4
 python-socketio==5.16.2
 pydantic==2.5.0
