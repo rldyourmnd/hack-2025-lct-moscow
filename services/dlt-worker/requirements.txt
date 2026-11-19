@@ -5,7 +5,7 @@ pyarrow==14.0.2
 sqlalchemy==2.0.23
 psycopg2-binary==2.9.9
 clickhouse-driver==0.2.6
-lxml==4.9.3
+lxml==6.1.0
 xmltodict==0.13.0
 redis==8.1.0
 requests==2.31.0
