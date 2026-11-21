@@ -15,7 +15,7 @@ python-multipart==0.0.31
 aiofiles==25.1.0
 python-jose==3.3.0
 passlib==1.7.4
-pandas==2.1.4
+pandas==3.1.1
 numpy==1.26.2
 asyncpg==0.29.0
 celery==5.3.4
