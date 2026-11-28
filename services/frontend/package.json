@@ -8,7 +8,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.20",
-    "@mui/x-data-grid": "^6.18.2",
+    "@mui/x-data-grid": "^9.0.0",
     "@reactflow/core": "^11.10.1",
     "@reactflow/controls": "^11.2.7",
     "@reactflow/minimap": "^11.7.8",
