@@ -1,5 +1,5 @@
 dlt==1.32.0
-pandas==2.1.4
+pandas==3.1.1
 numpy==1.26.2
 pyarrow==26.0.1
 sqlalchemy==2.0.23
